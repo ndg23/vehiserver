@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!'); // Respond with a simple message
+  res.status(202).json("Hello "); // Respond with a simple message
 });
 
 app.listen(port, () => {
