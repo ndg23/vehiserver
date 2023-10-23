@@ -10,6 +10,12 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    vehicles: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Vehicle",
+      },
+    ],
     email: {
       type: String,
       required: true,

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CarSchema = new mongoose.Schema(
+const VehicleSchema = new mongoose.Schema(
   {
     make: {
       type: String,
@@ -30,4 +30,4 @@ const CarSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Car", CarSchema);
+module.exports = mongoose.model("Vehicle", VehicleSchema);
