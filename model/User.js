@@ -29,16 +29,7 @@ const UserSchema = new mongoose.Schema(
     role: {
       type: String,
     },
-    boutique: [
-      {
-        ref: "Boutique",
-        type: String,
-      },
-    ],
-    picture: {
-      type: String,
-      default: "./uploads/profil/random-user.png",
-    },
+  
   },
   {
     timestamps: true,
