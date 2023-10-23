@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt=require("bcrypt")
 const UserSchema = new mongoose.Schema(
   {
-    pseudo: {
+    fullname: {
       type: String,
       required: true,
       minLength: 3,
@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Vehicle",
+        
       },
     ],
     email: {
@@ -23,11 +24,17 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    uniq:{
+      type:String,
+      required:true,
+    },
     password: {
       type: String,
-      required: true,
-      max: 1024,
-      minlength: 6,
     },
     isAdmin: {
       type: String,

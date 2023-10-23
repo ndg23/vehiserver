@@ -1,36 +1,36 @@
 
-const User = require("../model/User");
+const Report = require("../model/Report");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 
-module.exports.getAllUsers = async (req, res) => {
-    const users = await User.find().select("-password");
-    res.status(200).json(users);
+module.exports.getAllReports = async (req, res) => {
+    const Reports = await Report.find().select("-password");
+    res.status(200).json(Reports);
 }
-module.exports.userInfo = (req, res) => {
+module.exports.ReportInfo = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send("ID unknown : " + req.params.id);
 
-    User.findById(req.params.id, (err, docs) => {
+    Report.findById(req.params.id, (err, docs) => {
         if (!err) res.send(docs);
         else console.log("ID unknown : " + err);
     }).select("-password");
 };
-module.exports.createUser = async (req, res) => {
+module.exports.createReport = async (req, res) => {
 
-    const user = new User(req.body);
-    
-    user.save().then((savedUser) => {
-        return res.status(200).json(savedUser)
+    const Report = new Report(req.body);
+
+    Report.save().then((savedReport) => {
+        return res.status(200).json(savedReport)
     })
 
 }
-module.exports.updateUser = async (req, res) => {
+module.exports.updateReport = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send("ID unknown : " + req.params.id);
 
     try {
-        await User.findOneAndUpdate(
+        await Report.findOneAndUpdate(
             { _id: req.params.id },
             {
                 $set: {
@@ -45,12 +45,12 @@ module.exports.updateUser = async (req, res) => {
     }
 };
 
-module.exports.deleteUser = async (req, res) => {
+module.exports.deleteReport = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send("ID unknown : " + req.params.id);
 
     try {
-        await User.remove({ _id: req.params.id }).exec();
+        await Report.remove({ _id: req.params.id }).exec();
         res.status(200).json({ message: "Successfully deleted. " });
     } catch (err) {
         return res.status(500).json({ message: err });
