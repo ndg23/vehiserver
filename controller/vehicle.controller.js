@@ -4,7 +4,7 @@ const ObjectID = require("mongoose").Types.ObjectId;
 
 
 module.exports.getAllVehicles = async (req, res) => {
-    const Vehicles = await Vehicle.find().select("-password");
+    const Vehicles = await Vehicle.find().populate('owner');
     res.status(200).json(Vehicles);
 }
 module.exports.VehicleInfo = (req, res) => {
@@ -16,7 +16,14 @@ module.exports.VehicleInfo = (req, res) => {
         else console.log("ID unknown : " + err);
     }).select("-password");
 };
+module.exports.createVehicle = async (req, res) => {
+  
+    const createVehicle = new Vehicle(req.body);
+    createVehicle.save().then((savedVehiccreateVehicle) => {
+        return res.status(200).json(savedVehiccreateVehicle)
+    })
 
+}
 module.exports.updateVehicle = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send("ID unknown : " + req.params.id);

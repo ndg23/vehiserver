@@ -17,9 +17,12 @@ module.exports.userInfo = (req, res) => {
     }).select("-password");
 };
 module.exports.createUser = async (req, res) => {
-
+    const { email } = req.body
+    const userexist = await User.findOne({ email })
+    if (userexist) {
+        return res.status(409).json("Cet user exist already")
+    }
     const user = new User(req.body);
-    
     user.save().then((savedUser) => {
         return res.status(200).json(savedUser)
     })

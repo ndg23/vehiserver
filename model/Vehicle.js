@@ -10,12 +10,12 @@ const technicalInspectionSchema = new mongoose.Schema({
     validUntil: Date,
 })
 const registration = new mongoose.Schema({
-    plateNumber: number,
+    plateNumber: Number,
     issueDate: Date
 })
 const VehicleSchema = new mongoose.Schema(
     {
-        make: {
+        brand: {
             type: String,
             required: true,
             trim: true,
@@ -24,6 +24,10 @@ const VehicleSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
+        },
+        licencePlate: {
+            type: String,
+            unique: true,
         },
         year: {
             type: Number,

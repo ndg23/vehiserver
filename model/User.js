@@ -31,7 +31,6 @@ const UserSchema = new mongoose.Schema(
     },
     uniq:{
       type:String,
-      required:true,
     },
     password: {
       type: String,

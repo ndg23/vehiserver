@@ -5,6 +5,8 @@ const vehicleController = require("../controller/vehicle.controller");
 router.get("/", vehicleController.getAllVehicles);
 router.get("/:id", vehicleController.VehicleInfo);
 router.put("/:id", vehicleController.updateVehicle);
+router.post("", vehicleController.createVehicle);
+
 router.delete("/:id", vehicleController.deleteVehicle);
 
 // upload
